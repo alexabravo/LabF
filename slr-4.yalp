@@ -1,5 +1,5 @@
 /* Configuración del parser para Gramática No.4 */
-/* Sigue la gramática SLR: */
+/* Sigue la gramática SLR */
 /* P -> T */
 /* T -> M Q */
 /* T -> M */
@@ -39,6 +39,8 @@
 %token DIV
 %token PLUS
 %token TIMES
+
+%%
 
 p:
     t

@@ -1,5 +1,5 @@
 /* Configuración del parser para Gramática No.3 */
-/* Sigue la gramática SLR: */
+/* Sigue la gramática SLR */
 /* E → T + E | T */
 /* T → number * T | number | ( E ) */
 
@@ -10,6 +10,8 @@
 
 %token WHITESPACE
 IGNORE WHITESPACE
+
+%%
 
 expression:
     term PLUS expression
