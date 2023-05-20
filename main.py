@@ -1,4 +1,5 @@
 import re
+from Regex import *
 
 #Leemos el .yal y .yalp 
 yalFile = "slr-1.yal"
@@ -97,4 +98,6 @@ with open(yalpFile) as y:
         if token not in yalTokens:
             print("ERROR: El token " + token + "NO se encuentra en el archivo .yal")
         else: 
-            print("El token " + token + "se encuentra en el archivo .yal")
+            print("El token " + token + " se encuentra en el archivo .yal")
+
+
