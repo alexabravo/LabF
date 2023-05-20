@@ -3,8 +3,8 @@
 /* P -> T */
 /* T -> M Q */
 /* T -> M */
-/* Q -> ; M Q */
-/* Q -> ; M */
+/* Q ->  M Q */
+/* Q ->  M */
 /* M -> A */
 /* A -> id assignop E */
 /* E -> X Z */
@@ -39,6 +39,8 @@
 %token DIV
 %token PLUS
 %token TIMES
+%token WHITESPACE
+IGNORE WHITESPACE
 
 %%
 
