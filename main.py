@@ -1,5 +1,10 @@
 import re
 from Regex import *
+from lexer import *
+from arbol import * 
+from afd import *
+from yapar import *
+from tabla import *
 
 #Leemos el .yal y .yalp 
 yalFile = "slr-1.yal"
@@ -65,7 +70,7 @@ with open(yalpFile) as y:
                 break
                 
     print("Tokens a ignorar: ", tokensIgnorados)
-
+    print("-------------------------------------------------------")
     #Creamos una lista para guardar los tokens
     yalTokens =[]
 
@@ -100,4 +105,24 @@ with open(yalpFile) as y:
         else: 
             print("El token " + token + " se encuentra en el archivo .yal")
 
+yalp = "analizadorYalp.yal"
 
+regex, tokens = Lexer(yalp).leerYalex()
+post = Regex(regex)
+postfix = post.convertir_postfix()
+arbol = Arbol(yalp)
+arbol.arbol(postfix)
+resultado = arbol.izquierda()
+afd = AFD(resultado)
+directo = afd.Dstate()
+
+simulacion = Simulacion(directo[0], directo[1], yalpLines)
+sim = simulacion.simular()
+
+yalp = Yalp(yalFile, sim)
+yalp.yapar()
+yalp.construccion()
+
+parse = Tabla(yalp.transiciones, yalp.subsets, yalp.numeroSubsets, yalp.subproducciones)
+parse.tabla()
+parse.dibujoTabla()  

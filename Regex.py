@@ -1,4 +1,5 @@
 class Regex(object):
+    #Lo iniciamos con nuestra expresion regular, stack y el resultado postfix. 
     def __init__(self, expresion_regular):
         self.expresion_regular = expresion_regular
         self.pila = []
@@ -13,7 +14,7 @@ class Regex(object):
         '+': 3
     }
 
-    #El famoso algoritmo shunting yard, timando en cuenta todo los parentesis. 
+    #El famoso algoritmo shunting yard, tomando en cuenta todo los parentesis. 
     def convertir_postfix(self):
         for caracter in self.expresion_regular:
             if caracter in self.Operadores:
