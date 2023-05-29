@@ -1,8 +1,5 @@
 import copy
-import graphviz
-import networkx as nx
 from lexer import *
-
 
 class Yalp(object):
     def __init__(self, archivo, simulacion):

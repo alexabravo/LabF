@@ -104,19 +104,25 @@ with open(yalpFile) as y:
             print("ERROR: El token " + token + "NO se encuentra en el archivo .yal")
         else: 
             print("El token " + token + " se encuentra en el archivo .yal")
+print("-------------------------------------------------------")
+
 
 yalp = "analizadorYalp.yal"
 
-regex, tokens = Lexer(yalp).leerYalex()
+test = "slr-1.1.yal.run"
+with open(test) as y:
+        test = y.read()
+
+regex, tokens = Lexer(yalpFile).leerYalex()
 post = Regex(regex)
 postfix = post.convertir_postfix()
-arbol = Arbol(yalp)
+arbol = Arbol(yalpFile)
 arbol.arbol(postfix)
 resultado = arbol.izquierda()
 afd = AFD(resultado)
 directo = afd.Dstate()
 
-simulacion = Simulacion(directo[0], directo[1], yalpLines)
+simulacion = Simulacion(directo[0], directo[1], test)
 sim = simulacion.simular()
 
 yalp = Yalp(yalFile, sim)
