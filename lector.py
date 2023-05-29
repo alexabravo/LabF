@@ -1,4 +1,4 @@
-class Definition(object):
+class Lector(object):
     def __init__(self, token_functions):
         self.token_functions = token_functions
         
@@ -15,17 +15,17 @@ class Definition(object):
                 else:
                     file.write("        try:\n")
                     file.write(f"            {code}\n")
-                    file.write("        except NameError:\n")
-                    file.write("            return f'Token indefinido: {{token}}'\n")
+                    file.write("        except Error:\n")
+                    file.write("            return f'El token es indefinido'\n")
             
-            file.write("    return f'Token indefinido: {{token}}'\n")
+            file.write("    return f'Token indefinido: '\n")
             file.close
     
     def create_scanner_output(self):
-        with open("Scanner.py", "a") as file:
+        with open("scanner.py", "a") as file:
             file.write("\n")
             file.write("def output_scanner(simulation):\n")
-            file.write("    with open('./definition/output_definitions.txt', 'w') as f:\n")
+            file.write("    with open('tokensText.txt', 'w') as f:\n")
             file.write("        for s in simulation:\n")
             file.write("            scanner = scan(s[0])\n")
             file.write("            f.write(f'{s} ==> Definicion: {scanner}\\n')\n")

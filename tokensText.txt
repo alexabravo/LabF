@@ -1,0 +1,41 @@
+['id', 'varOne']:ID
+['+', '+']:PLUS
+['id', 'var2two']:ID
+['ws', '\n']:WHITESPACE
+['id', 'variableSimpleTres']:ID
+['ws', ' ']:WHITESPACE
+['+', '+']:PLUS
+['ws', ' ']:WHITESPACE
+['(', '(']:LPAREN
+['id', 'anotherVarFour4']:ID
+['ws', ' ']:WHITESPACE
+['*', '*']:TIMES
+['ws', ' ']:WHITESPACE
+['id', 'finalVariableFive']:ID
+[')', ')']:RPAREN
+['ws', '\n\n']:WHITESPACE
+['id', 'id1']:ID
+['ws', ' ']:WHITESPACE
+['*', '*']:TIMES
+['ws', ' ']:WHITESPACE
+['(', '(']:LPAREN
+['id', 'id2']:ID
+['ws', ' ']:WHITESPACE
+['+', '+']:PLUS
+['ws', ' ']:WHITESPACE
+['id', 'id3']:ID
+[')', ')']:RPAREN
+['ws', ' ']:WHITESPACE
+['+', '+']:PLUS
+['ws', ' ']:WHITESPACE
+['id', 'id4']:ID
+['ws', '\n']:WHITESPACE
+['id', 'id1']:ID
+['*', '*']:TIMES
+['(', '(']:LPAREN
+['id', 'id2']:ID
+['+', '+']:PLUS
+['id', 'id3']:ID
+[')', ')']:RPAREN
+['+', '+']:PLUS
+['id', 'id4']:ID

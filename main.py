@@ -5,7 +5,7 @@ from arbol import *
 from afd import *
 from yapar import *
 from tabla import *
-
+from lector import *
 #Leemos el .yal y .yalp 
 yalFile = "slr-1.yal"
 yalpFile = "slr-1.yalp"
@@ -109,20 +109,17 @@ print("-------------------------------------------------------")
 
 yalp = "analizadorYalp.yal"
 
-test = "slr-1.1.yal.run"
-with open(test) as y:
-        test = y.read()
 
-regex, tokens = Lexer(yalpFile).leerYalex()
+regex, tokens = Lexer(yalp).leerYalex()
 post = Regex(regex)
 postfix = post.convertir_postfix()
-arbol = Arbol(yalpFile)
+arbol = Arbol(yalp)
 arbol.arbol(postfix)
 resultado = arbol.izquierda()
 afd = AFD(resultado)
 directo = afd.Dstate()
 
-simulacion = Simulacion(directo[0], directo[1], test)
+simulacion = Simulacion(directo[0], directo[1], yalpLines)
 sim = simulacion.simular()
 
 yalp = Yalp(yalFile, sim)
@@ -132,3 +129,37 @@ yalp.construccion()
 parse = Tabla(yalp.transiciones, yalp.subsets, yalp.numeroSubsets, yalp.subproducciones)
 parse.tabla()
 parse.dibujoTabla()  
+
+yal = "slr-1.yal"
+regex, token_functions = Lexer(yal).leerYalex()
+post = Regex(regex)
+postfix = post.convertir_postfix()
+tree = Arbol(yal)
+tree.arbol(postfix)
+result = tree.izquierda()
+
+dfa = AFD(result)
+direct= dfa.Dstate()
+
+#Leemos el archivo 
+test = "slr-1.1.yal.run"
+with open(test) as f:
+    test = f.readlines()
+
+#Creamos la simulación 
+simulation = Simulacion(direct[0], direct[1], test)
+sim = simulation.simular()
+#Creamos el archivo 
+python_file = Lector(tokens)
+python_file.create_python()
+
+#Observamos la simulacion de tokens
+print(f"simulacion: {sim}")
+
+#Usamos nuestro archivo implementado 
+from implementacion import *
+#Abrimos y creamos un texto en donde se ven los tokens
+with open("tokensText.txt", "w") as f:
+    for s in sim:
+        scanner = scan(s[0])
+        f.write(f"{s}:{scanner}\n")

@@ -1,49 +1,64 @@
-from token import *
+from tokens import *
 
 def scan(token):
     if token == 'ws':
         try:
             return WHITESPACE
-        except NameError:
-            return f'Token indefinido: {{token}}'
-    if token == 'id':
+        except Error:
+            return f'El token es indefinido'
+    if token == 'characters':
         try:
-            return ID
-        except NameError:
-            return f'Token indefinido: {{token}}'
-    if token == 'number':
+            return CHARACTERS
+        except Error:
+            return f'El token es indefinido'
+    if token == '/*':
         try:
-            return NUMBER
-        except NameError:
-            return f'Token indefinido: {{token}}'
-    if token == '+':
+            return LEFTCOMMENT
+        except Error:
+            return f'El token es indefinido'
+    if token == '*/':
         try:
-            return PLUS
-        except NameError:
-            return f'Token indefinido: {{token}}'
-    if token == '-':
+            return RIGHTCOMMENT
+        except Error:
+            return f'El token es indefinido'
+    if token == '%token':
         try:
-            return MINUS
-        except NameError:
-            return f'Token indefinido: {{token}}'
-    if token == '*':
+            return TOKEN
+        except Error:
+            return f'El token es indefinido'
+    if token == '|':
         try:
-            return TIMES
-        except NameError:
-            return f'Token indefinido: {{token}}'
-    if token == '/':
+            return OR
+        except Error:
+            return f'El token es indefinido'
+    if token == 'IGNORE':
         try:
-            return DIV
-        except NameError:
-            return f'Token indefinido: {{token}}'
-    if token == '(':
+            return IGNORE
+        except Error:
+            return f'El token es indefinido'
+    if token == 'minusword':
         try:
-            return LPAREN
-        except NameError:
-            return f'Token indefinido: {{token}}'
-    if token == ')':
+            return MINUSCULA
+        except Error:
+            return f'El token es indefinido'
+    if token == 'mayusword':
         try:
-            return RPAREN
-        except NameError:
-            return f'Token indefinido: {{token}}'
-    return f'Token indefinido: {{token}}'
+            return MAYUSCULA
+        except Error:
+            return f'El token es indefinido'
+    if token == '%%':
+        try:
+            return SPLIT
+        except Error:
+            return f'El token es indefinido'
+    if token == ':':
+        try:
+            return TWOPOINTS
+        except Error:
+            return f'El token es indefinido'
+    if token == ';':
+        try:
+            return FINISHDECLARATION
+        except Error:
+            return f'El token es indefinido'
+    return f'Token indefinido: '
